@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        html,body{
+            padding: 0;
+            margin:0;
+            background-color: gray;
+            height: 100%;
+        }
+
+        #calc{
+
+                background-color: rgb(77, 66, 66);
+                color:white;
+                position: fixed;
+                left:50%;
+                top:50%;
+                transform:translate(-50%,-50%);
+                width:200px;
+               
+               
+        }
+        .result{
+            border:2 solid black;
+            background-color: cornsilk;
+            color:black;
+            padding: 2px;
+            margin: 7px 10px 7px 10px;
+            text-align: right;
+        }
+
+        ul{
+            list-style-type: none;
+            margin: 3px 0 0 3px;
+            padding: 0;
+            position: relative;
+           
+        }
+        ul li{
+            float: left;
+            border: 1px solid rgb(161, 152, 152);
+            width:32px;
+            text-align: center;
+            padding: 2px;
+            background-color: rgb(97, 93, 93);
+            margin: 5px;
+            box-shadow: 1px 3px 0 grey, 3px 3px  0 grey;
+            border-radius: 5px 5px;
+           
+        }
+
+        ul li:hover{
+            color:red;
+            cursor: pointer;
+
+        }
+       
+            
+        
+
+        ul li:nth-child(16)
+        {
+            height:52px;
+
+        }
+
+        ul li:last-child{
+            width:130px;
+            position: relative;
+            /* transform: translate(0, -33px); */
+            top:-35px;
+        }
+
+        ul li:active{
+            transform: translate(0, 3px);
+        }
+
+        .sign{
+            position: relative;;
+            top:5px;
+            left:5px;
+            color:rgb(170, 152, 152);
+            font-family: cursive;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            float:right;
+            transform: translate(-10px,-40px);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="calc">
+        <div class="result">0</div>
+
+        <ul>
+            <li class="js-btn">C</li>
+            <li class="js-btn">*</li>
+            <li class="js-btn">/</li>
+            <li class="js-btn">.</li>
+            <li class="js-btn">7</li>
+            <li class="js-btn">8</li>
+            <li class="js-btn">9</li>
+            <li class="js-btn">+</li>
+            <li class="js-btn">4</li>
+            <li class="js-btn">5</li>
+            <li class="js-btn">6</li>
+            <li class="js-btn">-</li>
+            <li class="js-btn">1</li>
+            <li class="js-btn">2</li>
+            <li class="js-btn"v>3</li>
+            <li class="js-btn">=</li>
+            <li class="js-btn">0</li>
+        </ul>
+
+        <div class="sign">
+            made by Margo</div>
+    </div>
+
+    <script>
+        const res=document.querySelector(".result")
+        const lis=document.querySelectorAll(".js-btn")
+
+        lis.forEach(node=>{
+            node.addEventListener('mousedown',function(event){
+                event.preventDefault();
+                let value0=node.innerHTML;
+                let resPrev=res.innerHTML;
+                // console.log(value0);
+
+                if(resPrev=="0")
+                    resPrev="";
+
+                if(value0=="C")
+                {
+                    res.innerHTML="0";
+                    return
+                }    
+                if(resPrev=="undefined" || resPrev=="Infinity")
+                {
+                    resPrev="";
+                    res.innerHTML=resPrev;
+                   
+                }
+                if(value0=="=") 
+                {
+                    res.innerHTML=eval(resPrev);
+                    return;
+                }   
+                res.innerHTML=resPrev+value0;
+            })
+
+        })
+
+    </script>
+</body>
+</html>
